@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 
 import javax.annotation.processing.Generated;
 
+import org.beanmaker.v2.runtime.DbBeanLanguage;
+
 import org.dbbeans.sql.DBTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanSourceFile", date = "2022-09-19T18:17:22.507589800Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
-public final class Language extends LanguageBase {
+public final class Language extends LanguageBase implements DbBeanLanguage {
 
 	public Language(long id) {
 		super(id);

@@ -21,6 +21,33 @@
     </description>
     <url>https://github.com/cpythoud/beanmaker-v2-label-manager</url>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.beanmaker</groupId>
+            <artifactId>label-manager-lib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dbbeans</groupId>
+            <artifactId>dbbeans-sql-lib</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>LabelManager</finalName>
         <plugins>

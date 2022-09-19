@@ -14,4 +14,15 @@ final class LanguageParameters extends LanguageParametersBase {
 		super();
 	}
 
+	@Override
+	public String getDatabaseTableName() {
+		return Configuration.getCurrentConfiguration().getLanguageTable();
+	}
+
+	@Override
+	public String getDatabaseFieldList() {
+		String table = getDatabaseTableName();
+		return table + ".id, " + table + ".name, " + table + ".iso, " + table + ".item_order";
+	}
+
 }

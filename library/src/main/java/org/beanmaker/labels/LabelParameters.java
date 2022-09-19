@@ -14,4 +14,15 @@ final class LabelParameters extends LabelParametersBase {
 		super();
 	}
 
+	@Override
+	public String getDatabaseTableName() {
+		return Configuration.getCurrentConfiguration().getLabelTable();
+	}
+
+	@Override
+	public String getDatabaseFieldList() {
+		String table = getDatabaseTableName();
+		return table + ".id, " + table + ".name";
+	}
+
 }
