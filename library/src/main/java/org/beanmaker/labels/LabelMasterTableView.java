@@ -7,6 +7,7 @@ import org.beanmaker.v2.runtime.DbBeanInterface;
 import org.beanmaker.v2.runtime.MasterTableCellDefinition;
 
 import org.jcodegen.html.TdTag;
+import org.jcodegen.html.ThTag;
 import org.jcodegen.html.TrTag;
 
 import javax.annotation.processing.Generated;
@@ -14,8 +15,11 @@ import javax.annotation.processing.Generated;
 @Generated(value = "org.beanmaker.v2.codegen.BeanMasterTableViewSourceFile", date = "2022-09-19T18:23:32.417719200Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public final class LabelMasterTableView extends LabelMasterTableViewBase {
 
+    private final Configuration configuration;
+
     public LabelMasterTableView() {
         displayId = true;
+        configuration = Configuration.getCurrentConfiguration();
     }
 
     @Override
@@ -42,6 +46,21 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
             titleRow.child(getTitleCell(language.getIso(), language.getCapIso()));
 
         return titleRow;
+    }
+
+    @Override
+    ThTag getIdTitleCell() {
+        if (configuration.usePlatformLabels())
+            return super.getIdTitleCell();
+
+        return getTitleCell("id", "ID");
+    }
+
+    ThTag getNameTitleCell() {
+        if (configuration.usePlatformLabels())
+            return super.getNameTitleCell();
+
+        return getTitleCell("name", "Code");
     }
 
     @Override

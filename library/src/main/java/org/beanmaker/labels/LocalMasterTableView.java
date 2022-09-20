@@ -15,4 +15,36 @@ abstract class LocalMasterTableView extends BaseMasterTableView {
 		super(tableId, localization);
 	}
 
+	@Override
+	protected String noDataMessage() {
+		if (Configuration.getCurrentConfiguration().usePlatformLabels())
+			return super.noDataMessage();
+
+		return "NO DATA";
+	}
+
+	@Override
+	protected String summaryTotalLabel() {
+		if (Configuration.getCurrentConfiguration().usePlatformLabels())
+			return super.summaryTotalLabel();
+
+		return "total";
+	}
+
+	@Override
+	protected String summaryShownLabel() {
+		if (Configuration.getCurrentConfiguration().usePlatformLabels())
+			return super.summaryShownLabel();
+
+		return "shown";
+	}
+
+	@Override
+	protected String summaryFilteredOutLabel() {
+		if (Configuration.getCurrentConfiguration().usePlatformLabels())
+			return super.summaryFilteredOutLabel();
+
+		return "filtered";
+	}
+
 }

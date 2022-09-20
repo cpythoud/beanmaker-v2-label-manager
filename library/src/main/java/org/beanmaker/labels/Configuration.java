@@ -15,9 +15,17 @@ public class Configuration {
     private final String labelDataTable;
     private final DB db;
     private final long defaultLanguageID;
+    private final boolean usePlatformLabels;
     private final LabelHelper labelHelper;
 
-    private Configuration(String languageTable, String labelTable, String labelDataTable, DB db, long defaultLanguageID) {
+    private Configuration(
+            String languageTable,
+            String labelTable,
+            String labelDataTable,
+            DB db,
+            long defaultLanguageID,
+            boolean usePlatformLabels)
+    {
         if (Strings.isEmpty(languageTable))
             throw new IllegalStateException("Missing language table name");
         if (Strings.isEmpty(labelTable))
@@ -34,6 +42,7 @@ public class Configuration {
         this.labelDataTable = labelDataTable;
         this.db = db;
         this.defaultLanguageID = defaultLanguageID;
+        this.usePlatformLabels = usePlatformLabels;
 
         labelHelper = new LabelHelper(labelTable, labelDataTable);
     }
@@ -70,6 +79,10 @@ public class Configuration {
         return defaultLanguageID;
     }
 
+    public boolean usePlatformLabels() {
+        return usePlatformLabels;
+    }
+
     public LabelHelper getLabelHelper() {
         return labelHelper;
     }
@@ -81,6 +94,7 @@ public class Configuration {
         private String labelDataTable = "label_data";
         private DB db;
         private long defaultLanguageID = 1;
+        private boolean usePlatformLabels = true;
 
         private ConfigurationBuilder() { }
 
@@ -109,8 +123,13 @@ public class Configuration {
             return this;
         }
 
+        public ConfigurationBuilder usePlatformLabels(boolean usePlatformLabels) {
+            this.usePlatformLabels = usePlatformLabels;
+            return this;
+        }
+
         public Configuration create() {
-            return new Configuration(languageTable, labelTable, labelDataTable, db, defaultLanguageID);
+            return new Configuration(languageTable, labelTable, labelDataTable, db, defaultLanguageID, usePlatformLabels);
         }
 
     }
