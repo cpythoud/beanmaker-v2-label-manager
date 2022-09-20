@@ -15,14 +15,10 @@ import org.beanmaker.v2.runtime.DbBeanLabelEditor;
 import org.beanmaker.v2.runtime.DbBeanLanguage;
 import org.beanmaker.v2.runtime.MissingImplementationException;
 
-import org.beanmaker.v2.runtime.dbutil.LabelHelper;
-
 import org.dbbeans.sql.DBTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.LabelManagerSourceFile", date = "2022-09-19T18:17:22.503589600Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public class LabelManager {
-
-	private static final LabelHelper LABEL_HELPER = new LabelHelper("labels", "label_data");
 
 	public static DbBeanLabel get(long id) {
 		throw new MissingImplementationException("LabelManager.get(long)");
@@ -45,7 +41,7 @@ public class LabelManager {
 	}
 
 	public static boolean isNameOK(String name) {
-		return LABEL_HELPER.isNameOK(DbBeans.dbAccess, name);
+		return Configuration.getCurrentConfiguration().getLabelHelper().isNameOK(DbBeans.dbAccess, name);
 	}
 
 	public static boolean isNameOK(String name, DBTransaction transaction) {

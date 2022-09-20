@@ -3,9 +3,59 @@
 
 package org.beanmaker.labels;
 
+import org.beanmaker.v2.runtime.DbBeanInterface;
+import org.beanmaker.v2.runtime.MasterTableCellDefinition;
+
+import org.jcodegen.html.TdTag;
+import org.jcodegen.html.TrTag;
+
 import javax.annotation.processing.Generated;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanMasterTableViewSourceFile", date = "2022-09-19T18:23:32.417719200Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public final class LabelMasterTableView extends LabelMasterTableViewBase {
+
+    public LabelMasterTableView() {
+        displayId = true;
+    }
+
+    @Override
+    protected TrTag getFilterRow() {
+        TrTag filterRow = getDefaultStartOfFilterRow();
+
+        filterRow.child(getIdFilterCell());
+        filterRow.child(getNameFilterCell());
+
+        for (var language: Language.getAll())
+            filterRow.child(getStringFilterCell(language.getIso()));
+
+        return filterRow;
+    }
+
+    @Override
+    protected TrTag getTitleRow() {
+        TrTag titleRow = getDefaultStartOfTitleRow();
+
+        titleRow.child(getIdTitleCell());
+        titleRow.child(getNameTitleCell());
+
+        for (var language: Language.getAll())
+            titleRow.child(getTitleCell(language.getIso(), language.getCapIso()));
+
+        return titleRow;
+    }
+
+    @Override
+    protected <B extends DbBeanInterface> void addDataToLine(TrTag line, B label) {
+        var actualLabel = (Label) label;
+        FormattedLabelData labelData = new FormattedLabelData(actualLabel, dbBeanLocalization);
+        line.child(getNameTableCell(labelData));
+
+        for (var language: Language.getAll())
+            line.child(getLabelDataTableCell(actualLabel, language));
+    }
+
+    private TdTag getLabelDataTableCell(Label label, Language language) {
+        return getTableCell(MasterTableCellDefinition.createTextCellDefinition(language.getIso(), label.get(language)));
+    }
 
 }

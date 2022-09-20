@@ -5,12 +5,18 @@ package org.beanmaker.labels;
 
 import java.sql.ResultSet;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
+
+import org.beanmaker.v2.runtime.DbBeanLabel;
+import org.beanmaker.v2.runtime.DbBeanLanguage;
 
 import org.dbbeans.sql.DBTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanSourceFile", date = "2022-09-19T18:23:32.402722300Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
-public final class Label extends LabelBase {
+public final class Label extends LabelBase implements DbBeanLabel {
 
 	public Label(long id) {
 		super(id);
@@ -24,4 +30,29 @@ public final class Label extends LabelBase {
 		super(rs);
 	}
 
+	@Override
+	public String get(DbBeanLanguage dbBeanLanguage) {
+		return Configuration.getCurrentConfiguration().getLabelHelper().get(DbBeans.dbAccess, getId(), dbBeanLanguage);
+	}
+
+	@Override
+	public String get(DbBeanLanguage dbBeanLanguage, Object... parameters) {
+		return Configuration.getCurrentConfiguration().getLabelHelper().get(DbBeans.dbAccess, getId(), dbBeanLanguage, parameters);
+	}
+
+	@Override
+	public String get(DbBeanLanguage dbBeanLanguage, List<Object> parameters) {
+		return Configuration.getCurrentConfiguration().getLabelHelper().get(DbBeans.dbAccess, getId(), dbBeanLanguage, parameters);
+	}
+
+	@Override
+	public String get(DbBeanLanguage dbBeanLanguage, Map<String, Object> parameters) {
+		return Configuration.getCurrentConfiguration().getLabelHelper().get(DbBeans.dbAccess, getId(), dbBeanLanguage, parameters);
+	}
+
+	@Override
+	public boolean hasDataFor(DbBeanLanguage dbBeanLanguage) {
+		return Configuration.getCurrentConfiguration().getLabelHelper().hasDataFor(DbBeans.dbAccess, getId(), dbBeanLanguage);
+	}
+	
 }

@@ -1,5 +1,7 @@
 package org.beanmaker.labels;
 
+import org.beanmaker.v2.runtime.dbutil.LabelHelper;
+
 import org.beanmaker.v2.util.Strings;
 
 import org.dbbeans.sql.DB;
@@ -13,6 +15,7 @@ public class Configuration {
     private final String labelDataTable;
     private final DB db;
     private final long defaultLanguageID;
+    private final LabelHelper labelHelper;
 
     private Configuration(String languageTable, String labelTable, String labelDataTable, DB db, long defaultLanguageID) {
         if (Strings.isEmpty(languageTable))
@@ -31,6 +34,8 @@ public class Configuration {
         this.labelDataTable = labelDataTable;
         this.db = db;
         this.defaultLanguageID = defaultLanguageID;
+
+        labelHelper = new LabelHelper(labelTable, labelDataTable);
     }
 
     public static ConfigurationBuilder builder() {
@@ -63,6 +68,10 @@ public class Configuration {
 
     public long getDefaultLanguageID() {
         return defaultLanguageID;
+    }
+
+    public LabelHelper getLabelHelper() {
+        return labelHelper;
     }
 
     public static class ConfigurationBuilder {
