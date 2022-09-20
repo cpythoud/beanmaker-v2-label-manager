@@ -34,6 +34,7 @@ public class ConfigurationManager implements ServletContextListener {
         Configuration.setCurrentConfiguration(
                 Configuration.builder()
                         .setDb(new DBFromDataSource(DATA_SOURCE))
+                        .usePlatformLabels(false)
                         .create()
         );
 
