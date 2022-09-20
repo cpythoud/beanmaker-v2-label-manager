@@ -3,8 +3,9 @@
 <html>
 <head>
     <title>LABELS</title>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body>
+<body class="bg-stone-400">
 <h1>Beanmaker Label Manager</h1>
 
 ${labelTable.summaryInfo}
