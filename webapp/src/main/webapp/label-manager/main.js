@@ -36,37 +36,38 @@ const getUpdateParameters = (idLabel, idLanguage, value) => {
 };
 
 document.addEventListener('click', event => {
-    event.preventDefault();
-
     const $link = event.target.closest('.edit-label-data');
-    const idLabel = $link.dataset.label;
-    const idLanguage = $link.dataset.language;
-    const value = $link.dataset.value;
+    if ($link) {
+        event.preventDefault();
+        const idLabel = $link.dataset.label;
+        const idLanguage = $link.dataset.language;
+        const value = $link.dataset.value;
 
-    console.log("ID Label = " + idLabel);
-    console.log("ID Language = " + idLanguage);
+        console.log("ID Label = " + idLabel);
+        console.log("ID Language = " + idLanguage);
 
-    const newValue = prompt("Value:", value);
-    if (newValue && newValue !== value) {
-        fetch('/label-manager/UpdateLabel', getUpdateParameters(idLabel, idLanguage, newValue))
-            .then(response => {
-                if (response.ok && response.headers.get("Content-Type") === "text/json; charset=UTF-8")
-                    return response.json();
+        const newValue = prompt("Value:", value);
+        if (newValue && newValue !== value) {
+            fetch('/label-manager/UpdateLabel', getUpdateParameters(idLabel, idLanguage, newValue))
+                .then(response => {
+                    if (response.ok && response.headers.get("Content-Type") === "text/json; charset=UTF-8")
+                        return response.json();
 
-                console.log(response.text());
+                    console.log(response.text());
 
-                throw new Error(`Unexpected response status ${response.status} or content type`);
-            })
-            .then(data => {
-                if (data.status === 'ok') {
-                    $link.innerText = newValue;
-                    $link.dataset.value = newValue;
-                } else
-                    throw new Error(`Unexpected response status ${data.status}`);
-            })
-            .catch(error => {
-                console.log(error);
-                alert('An unexpected error has occurred. See console output for more information.');
-            });
+                    throw new Error(`Unexpected response status ${response.status} or content type`);
+                })
+                .then(data => {
+                    if (data.status === 'ok') {
+                        $link.innerText = newValue;
+                        $link.dataset.value = newValue;
+                    } else
+                        throw new Error(`Unexpected response status ${data.status}`);
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert('An unexpected error has occurred. See console output for more information.');
+                });
+        }
     }
 });

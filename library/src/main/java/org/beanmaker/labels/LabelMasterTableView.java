@@ -7,6 +7,7 @@ import org.beanmaker.v2.runtime.DbBeanInterface;
 import org.beanmaker.v2.runtime.MasterTableCellDefinition;
 
 import org.beanmaker.v2.util.Strings;
+
 import org.jcodegen.html.ATag;
 import org.jcodegen.html.CData;
 import org.jcodegen.html.SpanTag;
@@ -84,10 +85,20 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
         return getDeleteCell(bean);
     }
 
+    @Override
+    protected TdTag getIdTableCell(DbBeanInterface bean) {
+        return super.getIdTableCell(bean).appendCssClasses(PADDING_CSS_CLASS);
+    }
+
+    @Override
+    TdTag getNameTableCell(FormattedLabelData label) {
+        return super.getNameTableCell(label).appendCssClasses(PADDING_CSS_CLASS);
+    }
+
     private TdTag getLabelDataTableCell(Label label, Language language) {
         String filterAndOrder = label.hasDataFor(language) ? label.get(language) : "";
         var definition = new MasterTableCellDefinition(language.getIso(), getLabelLink(label, language, filterAndOrder));
-        definition.filteringValue(filterAndOrder).orderingValue(filterAndOrder);
+        definition.filteringValue(filterAndOrder).orderingValue(filterAndOrder).extraCssClasses(PADDING_CSS_CLASS);
 
         return getTableCell(definition);
     }

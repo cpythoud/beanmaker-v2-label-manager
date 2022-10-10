@@ -14,10 +14,14 @@ import org.jcodegen.html.Tag;
 @Generated(value = "org.beanmaker.v2.codegen.LocalMasterTableViewSourceFile", date = "2022-09-19T18:23:32.415722300Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 abstract class LocalMasterTableView extends BaseMasterTableView {
 
+	static final String PADDING_CSS_CLASS = "px-2";
+
 	LocalMasterTableView(String tableId, DbBeanLocalization localization) {
 		super(tableId, localization);
-		tableCssClass = "cctable table-auto";
-
+		tableCssClass = "cctable table-auto w-full text-sm";
+		thFilterCssClass = PADDING_CSS_CLASS;
+		thTitleCssClass = PADDING_CSS_CLASS;
+		formElementFilterCssClass = "tb-filter w-full";
 	}
 
 	// * Labels

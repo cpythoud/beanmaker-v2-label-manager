@@ -28,7 +28,7 @@
             </c:forEach>
             <p>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-2xl py-2 px-8 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    +
+                    ${htmlWrapper.addLabelSymbol}
                 </button>
             </p>
         </form>

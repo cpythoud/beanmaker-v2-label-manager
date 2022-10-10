@@ -610,12 +610,20 @@ video {
   display: none;
 }
 
+.h-7 {
+  height: 1.75rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
 
 .w-full {
   width: 100%;
+}
+
+.w-7 {
+  width: 1.75rem;
 }
 
 .w-5 {
@@ -712,16 +720,17 @@ video {
   padding-right: 0.75rem;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .pb-8 {
   padding-bottom: 2rem;
 }
 
 .pt-6 {
   padding-top: 1.5rem;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .text-4xl {

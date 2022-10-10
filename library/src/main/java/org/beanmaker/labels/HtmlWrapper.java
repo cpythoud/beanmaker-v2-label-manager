@@ -8,4 +8,8 @@ public class HtmlWrapper {
         return Language.getAll();
     }
 
+    public String getAddLabelSymbol() {
+        return HeroIcons.getSVGCode("plus", "w-7 h-7");
+    }
+
 }
