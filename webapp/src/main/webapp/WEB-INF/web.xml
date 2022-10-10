@@ -8,4 +8,24 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <servlet>
+        <servlet-name>LabelManager</servlet-name>
+        <servlet-class>org.beanmaker.labels.LabelServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LabelManager</servlet-name>
+        <url-pattern>/label-manager/Labels</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LabelUpdate</servlet-name>
+        <servlet-class>org.beanmaker.labels.UpdateLabelServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LabelUpdate</servlet-name>
+        <url-pattern>/label-manager/UpdateLabel</url-pattern>
+    </servlet-mapping>
+
 </web-app>

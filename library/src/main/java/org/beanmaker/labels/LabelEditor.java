@@ -5,7 +5,11 @@ package org.beanmaker.labels;
 
 import java.sql.ResultSet;
 
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
+
+import org.beanmaker.v2.runtime.dbutil.Transactions;
 
 import org.dbbeans.sql.DBTransaction;
 
@@ -28,6 +32,47 @@ public final class LabelEditor extends LabelEditorBase {
 
 	LabelEditor(ResultSet rs) {
 		super(rs);
+	}
+
+	void updateValues(Map<Language, String> values) {
+		Transactions.wrap(
+				transaction -> {
+					for (var value: values.entrySet())
+						transaction.addUpdate(
+								"INSERT INTO " + Configuration.getCurrentConfiguration().getLabelDataTable()
+										+ " (id_label, id_language, data) VALUES (?, ?, ?)",
+								stat -> {
+									stat.setLong(1, getId());
+									stat.setLong(2, value.getKey().getId());
+									stat.setString(3, value.getValue());
+								}
+						);
+				},
+				DbBeans.createDBTransaction()
+		);
+	}
+
+	static void quickUpdate(long idLabel, long idLanguage, String value) {
+		int count = DbBeans.dbAccess.processUpdate(
+				"UPDATE " + Configuration.getCurrentConfiguration().getLabelDataTable()
+						+ " SET data=? WHERE id_label=? AND id_language=?",
+				stat -> {
+					stat.setString(1, value);
+					stat.setLong(2, idLabel);
+					stat.setLong(3, idLanguage);
+				}
+		);
+
+		if (count == 0)
+			DbBeans.dbAccess.processUpdate(
+					"INSERT INTO " + Configuration.getCurrentConfiguration().getLabelDataTable()
+							+ " (id_label, id_language, data) VALUES (?, ?, ?)",
+					stat -> {
+						stat.setLong(1, idLabel);
+						stat.setLong(2, idLanguage);
+						stat.setString(3, value);
+					}
+			);
 	}
 
 }

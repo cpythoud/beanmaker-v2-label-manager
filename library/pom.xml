@@ -29,6 +29,10 @@
             <groupId>org.beanmaker</groupId>
             <artifactId>beanmaker2-runtime</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

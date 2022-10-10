@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Test</title>
+</head>
+<body>
+<h1>Form1</h1>
+<form name="Form1" id="form1">
+    <p>
+        Test: <input type="text">
+    </p>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
+<script>
+    const form = document.getElementById('form1');
+    form.addEventListener('submit', (event) => {
+        alert('submitted');
+        alert(event.submitter);
+    });
+    document.addEventListener('submit', (event) => {
+        alert('submitted from document');
+        alert(event.submitter);
+    });
+</script>
+</body>
+</html>

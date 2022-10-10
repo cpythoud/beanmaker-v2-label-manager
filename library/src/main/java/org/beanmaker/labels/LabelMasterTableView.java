@@ -6,6 +6,11 @@ package org.beanmaker.labels;
 import org.beanmaker.v2.runtime.DbBeanInterface;
 import org.beanmaker.v2.runtime.MasterTableCellDefinition;
 
+import org.beanmaker.v2.util.Strings;
+import org.jcodegen.html.ATag;
+import org.jcodegen.html.CData;
+import org.jcodegen.html.SpanTag;
+import org.jcodegen.html.Tag;
 import org.jcodegen.html.TdTag;
 import org.jcodegen.html.ThTag;
 import org.jcodegen.html.TrTag;
@@ -19,6 +24,7 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
 
     public LabelMasterTableView() {
         displayId = true;
+        showEditLinks = true;
         configuration = Configuration.getCurrentConfiguration();
     }
 
@@ -73,8 +79,51 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
             line.child(getLabelDataTableCell(actualLabel, language));
     }
 
+    @Override
+    protected TdTag getEditCell(DbBeanInterface bean) {
+        return getDeleteCell(bean);
+    }
+
     private TdTag getLabelDataTableCell(Label label, Language language) {
-        return getTableCell(MasterTableCellDefinition.createTextCellDefinition(language.getIso(), label.get(language)));
+        String filterAndOrder = label.hasDataFor(language) ? label.get(language) : "";
+        var definition = new MasterTableCellDefinition(language.getIso(), getLabelLink(label, language, filterAndOrder));
+        definition.filteringValue(filterAndOrder).orderingValue(filterAndOrder);
+
+        return getTableCell(definition);
+    }
+
+    private Tag getLabelLink(Label label, Language language, String value) {
+        var link = new ATag()
+                .href("#")
+                .data("label", Long.toString(label.getId()))
+                .data("language", Long.toString(language.getId()))
+                .data("value", value)
+                .cssClass("edit-label-data hover:bg-stone-400");
+
+        if (Strings.isEmpty(value))
+            link.child(HeroIcons.get("pencil", "w-5 h-5"));
+        else
+            link.child(new CData(label.get(language)));
+
+        return link;
+    }
+
+    @Override
+    protected TdTag getDeleteCell(DbBeanInterface bean) {
+        return new TdTag()
+                .cssClass(tdResetCssClass)
+                .child(new ATag()
+                        .id("labelDel_" + bean.getId())
+                        .cssClass("tb-operation delete_label cursor-pointer")
+                        .child(
+                                new SpanTag()
+                                        .child(HeroIcons.get("trash", "w-5 h-5"))
+                                        .title(dbBeanLocalization.getLabel("tooltip_delete"))));
+    }
+
+    @Override
+    protected <B extends DbBeanInterface> boolean okToDelete(B bean) {
+        return false;  // ! The trashbin will show at the start of the line instead
     }
 
 }

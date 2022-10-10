@@ -3,6 +3,7 @@
 
 package org.beanmaker.labels;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -19,6 +20,18 @@ import org.dbbeans.sql.DBTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.LabelManagerSourceFile", date = "2022-09-19T18:17:22.503589600Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public class LabelManager {
+
+	private static final Map<String, String> DEFAULT_LABELS;
+
+	static {
+		DEFAULT_LABELS = new HashMap<>();
+
+		DEFAULT_LABELS.put("org-beanmaker-labels-Label_name", "Code");
+		DEFAULT_LABELS.put("org-beanmaker-labels-Label_name_required", "Field is required");
+		DEFAULT_LABELS.put("org-beanmaker-labels-Label_name_not_unique", "Code already exists");
+		DEFAULT_LABELS.put("org-beanmaker-labels-Label_cct_remove_filtering", "Remove filtering");
+		DEFAULT_LABELS.put("org-beanmaker-labels-Label_tooltip_delete", "Delete label");
+	}
 
 	public static DbBeanLabel get(long id) {
 		throw new MissingImplementationException("LabelManager.get(long)");
@@ -138,6 +151,16 @@ public class LabelManager {
 		public DbBeanLanguage getDefaultLanguage() {
 			return LabelManager.getDefaultLanguage();
 		}
+
+		@Override
+		public String get(String prefix, String labelName, DbBeanLanguage language) {
+			String code = prefix + "_" + labelName;
+			if (DEFAULT_LABELS.containsKey(code))
+				return DEFAULT_LABELS.get(code);
+
+			return super.get(prefix, labelName, language);
+		}
+
 	};
 
 	public static DbBeanLabelBasicFunctions getBasicFunctions() {

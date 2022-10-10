@@ -8,12 +8,19 @@ import javax.annotation.processing.Generated;
 import org.beanmaker.v2.runtime.BaseMasterTableView;
 import org.beanmaker.v2.runtime.DbBeanLocalization;
 
+import org.jcodegen.html.SpanTag;
+import org.jcodegen.html.Tag;
+
 @Generated(value = "org.beanmaker.v2.codegen.LocalMasterTableViewSourceFile", date = "2022-09-19T18:23:32.415722300Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 abstract class LocalMasterTableView extends BaseMasterTableView {
 
 	LocalMasterTableView(String tableId, DbBeanLocalization localization) {
 		super(tableId, localization);
+		tableCssClass = "cctable table-auto";
+
 	}
+
+	// * Labels
 
 	@Override
 	protected String noDataMessage() {
@@ -45,6 +52,15 @@ abstract class LocalMasterTableView extends BaseMasterTableView {
 			return super.summaryFilteredOutLabel();
 
 		return "filtered";
+	}
+
+	// * Icons
+
+	@Override
+	protected Tag removeFilteringHtmlTags() {
+		return new SpanTag()
+				.child(HeroIcons.get("x-circle", "w-5 h-5"))
+				.title(dbBeanLocalization.getLabel("cct_remove_filtering"));
 	}
 
 }
