@@ -86,7 +86,7 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
     protected <B extends DbBeanInterface> void addDataToLine(TrTag line, B label) {
         var actualLabel = (Label) label;
         FormattedLabelData labelData = new FormattedLabelData(actualLabel, dbBeanLocalization);
-        line.child(getNameTableCell(labelData));
+        line.child(getNameTableCell(actualLabel));
 
         for (var language: Language.getAll())
             line.child(getLabelDataTableCell(actualLabel, language));
@@ -102,9 +102,21 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
         return super.getIdTableCell(bean).appendCssClasses(PADDING_CSS_CLASS);
     }
 
-    @Override
-    TdTag getNameTableCell(FormattedLabelData label) {
-        return super.getNameTableCell(label).appendCssClasses(PADDING_CSS_CLASS);
+    private TdTag getNameTableCell(Label label) {
+        String filterAndOrder = label.getName();
+        var definition = new MasterTableCellDefinition("name", getLabelNameLink(label));
+        definition.filteringValue(filterAndOrder).orderingValue(filterAndOrder).extraCssClasses(PADDING_CSS_CLASS);
+
+        return getTableCell(definition);
+    }
+
+    private Tag getLabelNameLink(Label label) {
+        return new ATag()
+                .href("#")
+                .data("label", Long.toString(label.getId()))
+                .data("value", label.getName())
+                .cssClass("edit-label-name hover:bg-stone-400")
+                .child(new CData(label.getName()));
     }
 
     private TdTag getLabelDataTableCell(Label label, Language language) {

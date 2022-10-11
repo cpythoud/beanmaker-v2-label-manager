@@ -28,4 +28,14 @@
         <url-pattern>/label-manager/UpdateLabel</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LabelNameUpdate</servlet-name>
+        <servlet-class>org.beanmaker.labels.UpdateLabelNameServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LabelNameUpdate</servlet-name>
+        <url-pattern>/label-manager/UpdateLabelName</url-pattern>
+    </servlet-mapping>
+
 </web-app>

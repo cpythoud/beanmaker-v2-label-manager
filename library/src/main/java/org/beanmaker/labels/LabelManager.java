@@ -31,6 +31,7 @@ public class LabelManager {
 		DEFAULT_LABELS.put("org-beanmaker-labels-Label_name_not_unique", "Code already exists");
 		DEFAULT_LABELS.put("org-beanmaker-labels-Label_cct_remove_filtering", "Remove filtering");
 		DEFAULT_LABELS.put("org-beanmaker-labels-Label_tooltip_delete", "Delete label");
+		DEFAULT_LABELS.put("label-manager-not-unique-error", "Not Unique!");
 	}
 
 	public static DbBeanLabel get(long id) {
@@ -78,7 +79,16 @@ public class LabelManager {
 	}
 
 	public static String get(String name, DbBeanLanguage dbBeanLanguage) {
-		throw new MissingImplementationException("LabelManager.get(String, DbBeanLanguage)");
+		if (!Configuration.getCurrentConfiguration().usePlatformLabels() && DEFAULT_LABELS.containsKey(name))
+			return DEFAULT_LABELS.get(name);
+
+		return Configuration
+				.getCurrentConfiguration()
+				.getLabelHelper()
+				.get(
+						DbBeans.dbAccess,
+						"label-manager-not-unique-error",
+						new Language(Configuration.getCurrentConfiguration().getDefaultLanguageID()));
 	}
 
 	public static String get(String name, DbBeanLanguage dbBeanLanguage, Object... parameters) {
@@ -154,9 +164,11 @@ public class LabelManager {
 
 		@Override
 		public String get(String prefix, String labelName, DbBeanLanguage language) {
-			String code = prefix + "_" + labelName;
-			if (DEFAULT_LABELS.containsKey(code))
-				return DEFAULT_LABELS.get(code);
+			if (!Configuration.getCurrentConfiguration().usePlatformLabels()) {
+				String code = prefix + "_" + labelName;
+				if (DEFAULT_LABELS.containsKey(code))
+					return DEFAULT_LABELS.get(code);
+			}
 
 			return super.get(prefix, labelName, language);
 		}

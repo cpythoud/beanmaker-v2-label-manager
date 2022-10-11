@@ -79,6 +79,10 @@ public class Configuration {
         return defaultLanguageID;
     }
 
+    public Language getDefaultLanguage() {
+        return new Language(defaultLanguageID);
+    }
+
     public boolean usePlatformLabels() {
         return usePlatformLabels;
     }
