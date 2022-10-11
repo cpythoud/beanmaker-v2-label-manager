@@ -19,9 +19,12 @@ abstract class LocalMasterTableView extends BaseMasterTableView {
 	LocalMasterTableView(String tableId, DbBeanLocalization localization) {
 		super(tableId, localization);
 		tableCssClass = "cctable table-auto w-full text-sm";
-		thFilterCssClass = PADDING_CSS_CLASS;
-		thTitleCssClass = PADDING_CSS_CLASS;
-		formElementFilterCssClass = "tb-filter w-full";
+		thFilterCssClass = "text-left " + PADDING_CSS_CLASS;
+		thTitleCssClass = "text-left " + PADDING_CSS_CLASS;
+		formElementFilterCssClass = "tb-filter w-full min-w-0";
+		inputTagSize = 1;
+		thResetCssClass = "w-6";
+		tdResetCssClass = "w-6";
 	}
 
 	// * Labels
