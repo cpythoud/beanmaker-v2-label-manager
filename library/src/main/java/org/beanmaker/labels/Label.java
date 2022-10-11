@@ -18,6 +18,8 @@ import org.dbbeans.sql.DBTransaction;
 @Generated(value = "org.beanmaker.v2.codegen.BeanSourceFile", date = "2022-09-19T18:23:32.402722300Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public final class Label extends LabelBase implements DbBeanLabel {
 
+	private static final String AUTO_LABEL_PREFIX = "XXX-"; // ! Might need to be turned into a Configuration parameter
+
 	public Label(long id) {
 		super(id);
 	}
@@ -28,6 +30,26 @@ public final class Label extends LabelBase implements DbBeanLabel {
 
 	Label(ResultSet rs) {
 		super(rs);
+	}
+
+	static List<Label> getNonAutomaticLabels() {
+		return DbBeans.dbAccess.processQuery(
+				"SELECT " + LabelParameters.INSTANCE.getDatabaseFieldList() +
+						" FROM " + Configuration.getCurrentConfiguration().getLabelTable() +
+						" WHERE `name` NOT LIKE '" + AUTO_LABEL_PREFIX + "%'",
+				Label::getList
+		);
+	}
+
+	static long getNonAutomaticLabelCount() {
+		return DbBeans.dbAccess.processQuery(
+				"SELECT COUNT(id) FROM " + Configuration.getCurrentConfiguration().getLabelTable() +
+						" WHERE `name` NOT LIKE '" + AUTO_LABEL_PREFIX + "%'",
+				rs -> {
+					rs.next();
+					return rs.getLong(1);
+				}
+		);
 	}
 
 	@Override

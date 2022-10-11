@@ -18,6 +18,8 @@ import org.jcodegen.html.TrTag;
 
 import javax.annotation.processing.Generated;
 
+import java.util.List;
+
 @Generated(value = "org.beanmaker.v2.codegen.BeanMasterTableViewSourceFile", date = "2022-09-19T18:23:32.417719200Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public final class LabelMasterTableView extends LabelMasterTableViewBase {
 
@@ -68,6 +70,16 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
             return super.getNameTitleCell();
 
         return getTitleCell("name", "Code");
+    }
+
+    @Override
+    List<Label> getLabelInventory() {
+        return Label.getNonAutomaticLabels();
+    }
+
+    @Override
+    protected long getLineCount() {
+        return Label.getNonAutomaticLabelCount();
     }
 
     @Override
@@ -134,7 +146,7 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
 
     @Override
     protected <B extends DbBeanInterface> boolean okToDelete(B bean) {
-        return false;  // ! The trashbin will show at the start of the line instead
+        return false;  // * The trashbin will show at the start of the line instead
     }
 
 }
