@@ -40,6 +40,7 @@
 
 <script src="cctable2.js"></script>
 <script src="beanmaker2.js"></script>
+<script src="config.js"></script>
 <script src="main.js"></script>
 
 </body>

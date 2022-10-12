@@ -1,7 +1,7 @@
 document.getElementById('Label_0').reset(); // Firefox
 
 new Beanmaker2('Label', {
-    servletURL: '/label-manager/Labels',
+    servletURL: LM_CONFIG.servletPathStart + 'Labels',
     submitSuccessFunction: ($form) => {
         if (Beanmaker2.getBeanID($form) === '0')
             window.location.reload();
@@ -46,7 +46,7 @@ document.addEventListener('click', event => {
 
         const newValue = prompt("Value:", value);
         if (newValue && newValue !== value) {
-            fetch('/label-manager/UpdateLabel', getUpdateParameters(idLabel, idLanguage, newValue))
+            fetch(LM_CONFIG.servletPathStart + 'UpdateLabel', getUpdateParameters(idLabel, idLanguage, newValue))
                 .then(response => {
                     if (response.ok && response.headers.get("Content-Type") === "text/json; charset=UTF-8")
                         return response.json();
@@ -79,7 +79,7 @@ document.addEventListener('click', event => {
 
         const newValue = prompt("Value:", value);
         if (newValue && newValue !== value) {
-            fetch('/label-manager/UpdateLabelName', getUpdateParameters(idLabel, undefined, newValue))
+            fetch(LM_CONFIG.servletPathStart + 'UpdateLabelName', getUpdateParameters(idLabel, undefined, newValue))
                 .then(response => {
                     if (response.ok && response.headers.get("Content-Type") === "text/json; charset=UTF-8")
                         return response.json();
