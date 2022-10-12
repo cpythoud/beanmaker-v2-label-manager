@@ -43,7 +43,7 @@ public class LabelManager {
 	}
 
 	public static DbBeanLabel get(String name) {
-		throw new MissingImplementationException("LabelManager.get(String)");
+		return new Label(Configuration.getCurrentConfiguration().getLabelHelper().getLabelID(DbBeans.dbAccess, name));
 	}
 
 	public static boolean isIdOK(long id) {
