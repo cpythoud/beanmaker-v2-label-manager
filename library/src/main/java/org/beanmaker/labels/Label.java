@@ -36,7 +36,8 @@ public final class Label extends LabelBase implements DbBeanLabel {
 		return DbBeans.dbAccess.processQuery(
 				"SELECT " + LabelParameters.INSTANCE.getDatabaseFieldList() +
 						" FROM " + Configuration.getCurrentConfiguration().getLabelTable() +
-						" WHERE `name` NOT LIKE '" + AUTO_LABEL_PREFIX + "%'",
+						" WHERE `name` NOT LIKE '" + AUTO_LABEL_PREFIX + "%'" +
+						" ORDER BY `name`",
 				Label::getList
 		);
 	}
