@@ -29,6 +29,7 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
         displayId = true;
         showEditLinks = true;
         configuration = Configuration.getCurrentConfiguration();
+        tableId = "labels";
     }
 
     @Override
