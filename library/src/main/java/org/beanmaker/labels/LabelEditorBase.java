@@ -149,7 +149,7 @@ abstract sealed class LabelEditorBase extends DbBeanEditor permits LabelEditor {
 
 	List<Function<DBTransaction, FieldValidationResult>> getNameValidationFunctions() {
 		return List.of(transaction -> {
-			if (name.length() <= 64)
+			if (name.length() <= 128)
 				return FieldValidationResult.OK;
 
 			return FieldValidationResult.create("name" + DbBeanLocalization.TOO_LONG_EXT, 64);
