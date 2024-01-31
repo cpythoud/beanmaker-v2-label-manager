@@ -7,28 +7,27 @@ import javax.annotation.processing.Generated;
 
 import javax.servlet.ServletException;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.beanmaker.v2.runtime.ChangeOrderDirection;
 import org.beanmaker.v2.runtime.DbBeanEditor;
 import org.beanmaker.v2.runtime.DbBeanHTMLViewInterface;
+import org.beanmaker.v2.runtime.HttpRequestParameters;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanServletBaseSourceFile", date = "2022-09-21T14:12:20.036115200Z", comments = "DO-NOT-EDIT,1.0-SNAPSHOT-20919")
 abstract sealed class LabelServletBase extends BaseServlet permits LabelServlet {
 
 	@Override
-	protected DbBeanHTMLViewInterface getHTMLView(long id, HttpServletRequest request) throws ServletException {
+	protected DbBeanHTMLViewInterface getHTMLView(long id, HttpRequestParameters requestParameters) throws ServletException {
 		LabelEditor labelEditor = new LabelEditor();
 
 		if (id > 0)
 			labelEditor.setId(id);
 
-		return new LabelHTMLView(labelEditor, getLanguage(request.getSession()));
+		return new LabelHTMLView(labelEditor, getLanguage(requestParameters.getSession()));
 	}
 
 	@Override
-	protected long getSubmitBeanId(HttpServletRequest request) {
-		return getBeanId(request, "submittedLabel");
+	protected long getSubmitBeanId(HttpRequestParameters requestParameters) {
+		return getBeanId(requestParameters, "submittedLabel");
 	}
 
 	@Override
@@ -37,7 +36,7 @@ abstract sealed class LabelServletBase extends BaseServlet permits LabelServlet 
 	}
 
 	@Override
-	protected String changeOrder(long id, ChangeOrderDirection direction, long companionId, HttpServletRequest request) {
+	protected String changeOrder(long id, ChangeOrderDirection direction, long companionId, HttpRequestParameters requestParameters) {
 		throw new UnsupportedOperationException("Label beans have no ordering. (No itemOrder field present.)");
 	}
 
