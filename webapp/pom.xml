@@ -6,13 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>label-manager-webapp</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>war</packaging>
 
     <parent>
         <groupId>org.beanmaker</groupId>
         <artifactId>label-manager</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <name>Beanmaker Label Manager JSP pages and test webapp</name>
