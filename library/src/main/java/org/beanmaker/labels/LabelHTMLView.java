@@ -26,9 +26,9 @@ public final class LabelHTMLView extends LabelHTMLViewBase {
 
 		values.clear();
 		for (Language language: Language.getAll()) {
-			String iso = language.getIso();
-			if (parameters.hasParameter(iso))
-				values.put(language, parameters.getValue(iso));
+			String tag = language.getTag();
+			if (parameters.hasParameter(tag))
+				values.put(language, parameters.getValue(tag));
 		}
 	}
 

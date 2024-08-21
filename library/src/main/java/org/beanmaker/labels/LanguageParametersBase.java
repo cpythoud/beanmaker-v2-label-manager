@@ -19,12 +19,12 @@ abstract sealed class LanguageParametersBase implements DbBeanParameters permits
 
 	@Override
 	public DbBeanLocalization getLocalization() {
-		return new DbBeanLocalization(LabelManager.getBasicFunctions(), "org-beanmaker-labels-Language", "Language");
+		return new DbBeanLocalization(LabelManager.getBasicFunctions(), "net-xnlab-platform-core-Language", "Language");
 	}
 
 	@Override
 	public DbBeanLocalization getLocalization(DbBeanLanguage language) {
-		return new DbBeanLocalization(LabelManager.getBasicFunctions(), "org-beanmaker-labels-Language", "Language", language);
+		return new DbBeanLocalization(LabelManager.getBasicFunctions(), "net-xnlab-platform-core-Language", "Language", language);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ abstract sealed class LanguageParametersBase implements DbBeanParameters permits
 
 	@Override
 	public String getDatabaseFieldList() {
-		return "languages.id, languages.name, languages.iso, languages.item_order";
+		return "languages.id, languages.name, languages.iso, languages.region, languages.default_language, languages.active, languages.item_order";
 	}
 
 	@Override

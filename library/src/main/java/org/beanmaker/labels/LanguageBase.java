@@ -31,6 +31,9 @@ abstract sealed class LanguageBase implements DbBeanWithItemOrder permits Langua
 	private final long id;
 	private final String name;
 	private final String iso;
+	private final String region;
+	private final Boolean defaultLanguage;
+	private final Boolean active;
 	private final long itemOrder;
 
 	LanguageBase(long id) {
@@ -40,34 +43,49 @@ abstract sealed class LanguageBase implements DbBeanWithItemOrder permits Langua
 	LanguageBase(long id, DBTransaction transaction) {
 		final String[] name = new String[1];
 		final String[] iso = new String[1];
+		final String[] region = new String[1];
+		final Boolean[] defaultLanguage = new Boolean[1];
+		final Boolean[] active = new Boolean[1];
 		final long[] itemOrder = new long[1];
 		if (transaction == null)
 			DbBeanInitializer.initialize(id, LanguageParameters.INSTANCE, dbAccess, rs -> {
-			name[0] = DBUtil.getString(rs, 2);
-			iso[0] = DBUtil.getString(rs, 3);
-			itemOrder[0] = DBUtil.getItemOrder(rs, 4);
-		});
+				name[0] = DBUtil.getString(rs, 2);
+				iso[0] = DBUtil.getString(rs, 3);
+				region[0] = DBUtil.getString(rs, 4);
+				defaultLanguage[0] = DBUtil.getBoolean(rs, 5);
+				active[0] = DBUtil.getBoolean(rs, 6);
+				itemOrder[0] = DBUtil.getItemOrder(rs, 7);
+			});
 		else
 			DbBeanInitializer.initialize(id, LanguageParameters.INSTANCE, transaction, rs -> {
-					name[0] = DBUtil.getString(rs, 2);
-					iso[0] = DBUtil.getString(rs, 3);
-					itemOrder[0] = DBUtil.getItemOrder(rs, 4);
-				});
+				name[0] = DBUtil.getString(rs, 2);
+				iso[0] = DBUtil.getString(rs, 3);
+				region[0] = DBUtil.getString(rs, 4);
+				defaultLanguage[0] = DBUtil.getBoolean(rs, 5);
+				active[0] = DBUtil.getBoolean(rs, 6);
+				itemOrder[0] = DBUtil.getItemOrder(rs, 7);
+			});
 		this.id = id;
 		this.name = name[0];
 		this.iso = iso[0];
+		this.region = region[0];
+		this.defaultLanguage = defaultLanguage[0];
+		this.active = active[0];
 		this.itemOrder = itemOrder[0];
 	}
 
-	LanguageBase(long id, String name, String iso, long itemOrder) {
+	LanguageBase(long id, String name, String iso, String region, Boolean defaultLanguage, Boolean active, long itemOrder) {
 		this.id = id;
 		this.name = name;
 		this.iso = iso;
+		this.region = region;
+		this.defaultLanguage = defaultLanguage;
+		this.active = active;
 		this.itemOrder = itemOrder;
 	}
 
 	LanguageBase(ResultSet rs) {
-		this(DBUtil.getBeanID(rs, 1), DBUtil.getString(rs, 2), DBUtil.getString(rs, 3), DBUtil.getItemOrder(rs, 4));
+		this(DBUtil.getBeanID(rs, 1), DBUtil.getString(rs, 2), DBUtil.getString(rs, 3), DBUtil.getString(rs, 4), DBUtil.getBoolean(rs, 5), DBUtil.getBoolean(rs, 6), DBUtil.getItemOrder(rs, 7));
 	}
 
 	public Language refreshFromDataBase() {
@@ -92,6 +110,9 @@ abstract sealed class LanguageBase implements DbBeanWithItemOrder permits Langua
 		ToStringMaker stringMaker = new ToStringMaker(this);
 		stringMaker.addField("name", name);
 		stringMaker.addField("iso", iso);
+		stringMaker.addField("region", region);
+		stringMaker.addField("defaultLanguage", defaultLanguage);
+		stringMaker.addField("active", active);
 		stringMaker.addField("itemOrder", itemOrder);
 		return stringMaker.toString();
 	}
@@ -107,6 +128,18 @@ abstract sealed class LanguageBase implements DbBeanWithItemOrder permits Langua
 
 	public String getIso() {
 		return iso;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public Boolean isDefaultLanguage() {
+		return defaultLanguage;
+	}
+
+	public Boolean isActive() {
+		return active;
 	}
 
 	@Override
@@ -130,6 +163,18 @@ abstract sealed class LanguageBase implements DbBeanWithItemOrder permits Langua
 
 	public boolean isIsoEmpty() {
 		return Strings.isEmpty(iso);
+	}
+
+	public boolean isRegionEmpty() {
+		return Strings.isEmpty(region);
+	}
+
+	public boolean isDefaultLanguageEmpty() {
+		return defaultLanguage == null;
+	}
+
+	public boolean isActiveEmpty() {
+		return active == null;
 	}
 
 	@Override

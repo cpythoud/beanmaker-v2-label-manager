@@ -40,7 +40,7 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
         filterRow.child(getNameFilterCell());
 
         for (var language: Language.getAll())
-            filterRow.child(getStringFilterCell(language.getIso()));
+            filterRow.child(getStringFilterCell(language.getTag()));
 
         return filterRow;
     }
@@ -53,7 +53,7 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
         titleRow.child(getNameTitleCell());
 
         for (var language: Language.getAll())
-            titleRow.child(getTitleCell(language.getIso(), language.getCapIso()));
+            titleRow.child(getTitleCell(language.getTag(), language.getTag()));
 
         return titleRow;
     }
@@ -122,7 +122,7 @@ public final class LabelMasterTableView extends LabelMasterTableViewBase {
 
     private TdTag getLabelDataTableCell(Label label, Language language) {
         String filterAndOrder = label.hasDataFor(language) ? label.get(language) : "";
-        var definition = new MasterTableCellDefinition(language.getIso(), getLabelLink(label, language, filterAndOrder));
+        var definition = new MasterTableCellDefinition(language.getTag(), getLabelLink(label, language, filterAndOrder));
         definition.filteringValue(filterAndOrder).orderingValue(filterAndOrder).extraCssClasses(PADDING_CSS_CLASS);
 
         return getTableCell(definition);

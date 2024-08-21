@@ -22,7 +22,7 @@ final class LanguageParameters extends LanguageParametersBase {
 	@Override
 	public String getDatabaseFieldList() {
 		String table = getDatabaseTableName();
-		return table + ".id, " + table + ".name, " + table + ".iso, " + table + ".item_order";
+		return table + ".id, " + table + ".name, " + table + ".iso, " + table + ".region, " + table + ".default_language, " + table + ".active, " + table + ".item_order";
 	}
 
 }

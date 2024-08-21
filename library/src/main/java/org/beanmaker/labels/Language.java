@@ -5,9 +5,13 @@ package org.beanmaker.labels;
 
 import java.sql.ResultSet;
 
+import java.util.Optional;
+
 import javax.annotation.processing.Generated;
 
 import org.beanmaker.v2.runtime.DbBeanLanguage;
+
+import org.beanmaker.v2.util.Strings;
 
 import org.dbbeans.sql.DBTransaction;
 
@@ -24,6 +28,15 @@ public final class Language extends LanguageBase implements DbBeanLanguage {
 
 	Language(ResultSet rs) {
 		super(rs);
+	}
+
+	@Override
+	public Optional<String> getRegionCode() {
+		String region = getRegion();
+		if (Strings.isEmpty(region))
+			return Optional.empty();
+
+		return Optional.of(region);
 	}
 
 }

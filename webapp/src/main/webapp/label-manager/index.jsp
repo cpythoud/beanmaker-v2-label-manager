@@ -22,8 +22,8 @@
             </p>
             <c:forEach var="lang" items="${htmlWrapper.languages}">
                 <p class="mb-4">
-                    <label for="${lang.iso}" class="block text-gray-700 text-sm font-bold mb-2">${lang.getCapIso()}</label>
-                    <input type="text" name="${lang.iso}" id="${lang.iso}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <label for="${lang.tag}" class="block text-gray-700 text-sm font-bold mb-2">${lang.tag}</label>
+                    <input type="text" name="${lang.tag}" id="${lang.tag}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </p>
             </c:forEach>
             <p>
