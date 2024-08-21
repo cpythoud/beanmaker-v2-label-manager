@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="https://schema.beanmaker.org/beanmaker-config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://schema.beanmaker.org/beanmaker-config https://schema.beanmaker.org/beanmaker-config.xsd">
+	<name>label-manager</name>
+	<database>label-manager</database>
+	<default-package>org.beanmaker.labels</default-package>
+	<gen-source-dir>src/main/java</gen-source-dir>
+</project>
