@@ -3,4 +3,4 @@ target/
 webapp/src/main/tailwind/output.html
 webapp/src/main/tailwind/main.css
 pom.xml.versionsBackup
-./.idea
+.idea
