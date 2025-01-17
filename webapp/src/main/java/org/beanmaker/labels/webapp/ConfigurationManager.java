@@ -25,7 +25,7 @@ public class ConfigurationManager implements ServletContextListener {
         } catch (PropertyVetoException propertyVetoException) {
             throw new RuntimeException(propertyVetoException);
         }
-        DATA_SOURCE.setJdbcUrl("jdbc:mysql://localhost:3306/label-manager-test");
+        DATA_SOURCE.setJdbcUrl("jdbc:mysql://localhost:3306/label-manager-test?useSSL=false&allowPublicKeyRetrieval=true");
         DATA_SOURCE.setUser("label-test");
         DATA_SOURCE.setPassword("ltestpwd");
         DATA_SOURCE.setMaxStatements(180);
