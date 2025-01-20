@@ -41,7 +41,7 @@
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <beanmaker.version>2.2</beanmaker.version>
+        <beanmaker.version>2.3-SNAPSHOT</beanmaker.version>
     </properties>
 
     <distributionManagement>
@@ -84,17 +84,17 @@
             <dependency>
                 <groupId>org.beanmaker</groupId>
                 <artifactId>beanmaker2-util</artifactId>
-                <version>2.2-SNAPSHOT</version>
+                <version>${beanmaker.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.beanmaker</groupId>
                 <artifactId>beanmaker2-runtime</artifactId>
-                <version>2.2-SNAPSHOT</version>
+                <version>${beanmaker.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.beanmaker</groupId>
                 <artifactId>label-manager-lib</artifactId>
-                <version>2.3-SNAPSHOT</version>
+                <version>${beanmaker.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.mchange</groupId>
