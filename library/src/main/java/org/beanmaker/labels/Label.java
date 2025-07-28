@@ -77,5 +77,25 @@ public final class Label extends LabelBase implements DbBeanLabel {
 	public boolean hasDataFor(DbBeanLanguage dbBeanLanguage) {
 		return Configuration.getCurrentConfiguration().getLabelHelper().hasDataFor(DbBeans.dbAccess, getId(), dbBeanLanguage);
 	}
-	
+
+	@Override
+	public String getSafeValue(DbBeanLanguage dbBeanLanguage) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String getSafeValue(DbBeanLanguage dbBeanLanguage, Object... parameters) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String getSafeValue(DbBeanLanguage dbBeanLanguage, List<Object> parameters) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String getSafeValue(DbBeanLanguage dbBeanLanguage, Map<String, Object> parameters) {
+		throw new UnsupportedOperationException();
+	}
+
 }

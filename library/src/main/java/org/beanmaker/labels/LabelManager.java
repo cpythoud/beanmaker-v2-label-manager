@@ -173,6 +173,11 @@ public class LabelManager {
 			return super.get(prefix, labelName, language);
 		}
 
+		@Override
+		public DbBeanLabel getLabel(long id) {
+			return new Label(id);
+		}
+
 	};
 
 	public static DbBeanLabelBasicFunctions getBasicFunctions() {
