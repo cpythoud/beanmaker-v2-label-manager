@@ -44,10 +44,23 @@
         <beanmaker.version>2.3-SNAPSHOT</beanmaker.version>
     </properties>
 
-    <distributionManagement>
+    <!--<distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>-->
+
+    <distributionManagement>
+        <repository>
+            <id>beanmaker-releases</id>
+            <name>Beanmaker Releases</name>
+            <url>https://repository.beanmaker.org/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>beanmaker-snapshots</id>
+            <name>Beanmaker Snapshots</name>
+            <url>https://repository.beanmaker.org/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
