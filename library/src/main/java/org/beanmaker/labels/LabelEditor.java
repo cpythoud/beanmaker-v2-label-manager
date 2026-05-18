@@ -11,6 +11,8 @@ import javax.annotation.processing.Generated;
 
 import org.beanmaker.v2.runtime.dbutil.Transactions;
 
+import org.beanmaker.v2.util.Strings;
+
 import org.dbbeans.sql.DBTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanEditorSourceFile", date = "2022-09-19T18:23:32.405720400Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
@@ -37,22 +39,47 @@ public final class LabelEditor extends LabelEditorBase {
 	void updateValues(Map<Language, String> values) {
 		Transactions.wrap(
 				transaction -> {
-					for (var value: values.entrySet())
-						transaction.addUpdate(
-								"INSERT INTO " + Configuration.getCurrentConfiguration().getLabelDataTable()
-										+ " (id_label, id_language, data) VALUES (?, ?, ?)",
-								stat -> {
-									stat.setLong(1, getId());
-									stat.setLong(2, value.getKey().getId());
-									stat.setString(3, value.getValue());
-								}
-						);
+					for (var language: Language.getAll()) {
+						String value = values.get(language);
+						if (Strings.isEmpty(value)) {
+							transaction.addUpdate(
+									"DELETE FROM " + Configuration.getCurrentConfiguration().getLabelDataTable()
+											+ " WHERE id_label=? and id_language=?",
+									stat -> {
+										stat.setLong(1, getId());
+										stat.setLong(2, language.getId());
+									}
+							);
+						} else {
+							transaction.addUpdate(
+									"INSERT INTO " + Configuration.getCurrentConfiguration().getLabelDataTable()
+											+ " (id_label, id_language, data) VALUES (?, ?, ?)",
+									stat -> {
+										stat.setLong(1, getId());
+										stat.setLong(2, language.getId());
+										stat.setString(3, value);
+									}
+							);
+						}
+					}
 				},
 				DbBeans.createDBTransaction()
 		);
 	}
 
 	static void quickUpdate(long idLabel, long idLanguage, String value) {
+		if (Strings.isEmpty(value)) {
+			DbBeans.dbAccess.processUpdate(
+					"DELETE FROM " + Configuration.getCurrentConfiguration().getLabelDataTable()
+							+ " WHERE id_label=? AND id_language=?",
+					stat -> {
+						stat.setLong(1, idLabel);
+						stat.setLong(2, idLanguage);
+					}
+			);
+			return;
+		}
+
 		int count = DbBeans.dbAccess.processUpdate(
 				"UPDATE " + Configuration.getCurrentConfiguration().getLabelDataTable()
 						+ " SET data=? WHERE id_label=? AND id_language=?",

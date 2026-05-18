@@ -45,7 +45,7 @@ document.addEventListener('click', event => {
         const value = $link.dataset.value;
 
         const newValue = prompt("Value:", value);
-        if (newValue && newValue !== value) {
+        if (newValue !== null && newValue !== value) {
             fetch(LM_CONFIG.servletPathStart + 'UpdateLabel', getUpdateParameters(idLabel, idLanguage, newValue))
                 .then(response => {
                     if (response.ok && response.headers.get("Content-Type") === "text/json; charset=UTF-8")
@@ -57,8 +57,12 @@ document.addEventListener('click', event => {
                 })
                 .then(data => {
                     if (data.status === 'ok') {
-                        $link.innerText = newValue;
-                        $link.dataset.value = newValue;
+                        if (newValue) {
+                            $link.innerText = newValue;
+                            $link.dataset.value = newValue;
+                        } else {
+                            window.location.reload();
+                        }
                     } else
                         throw new Error(`Unexpected response status ${data.status}`);
                 })
