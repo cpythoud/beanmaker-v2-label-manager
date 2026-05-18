@@ -163,6 +163,11 @@ public class LabelManager {
 		}
 
 		@Override
+		public long duplicateLabel(DbBeanLabel label, DBTransaction transaction) {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
 		public String get(String prefix, String labelName, DbBeanLanguage language) {
 			if (!Configuration.getCurrentConfiguration().usePlatformLabels()) {
 				String code = prefix + "_" + labelName;
@@ -176,6 +181,11 @@ public class LabelManager {
 		@Override
 		public DbBeanLabel getLabel(long id) {
 			return new Label(id);
+		}
+
+		@Override
+		public DbBeanLabel getLabel(long id, DBTransaction transaction) {
+			return new Label(id, transaction);
 		}
 
 	};
