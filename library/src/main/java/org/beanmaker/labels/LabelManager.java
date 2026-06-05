@@ -16,7 +16,7 @@ import org.beanmaker.v2.runtime.DbBeanLabelEditor;
 import org.beanmaker.v2.runtime.DbBeanLanguage;
 import org.beanmaker.v2.runtime.MissingImplementationException;
 
-import org.dbbeans.sql.DBTransaction;
+import org.beanmaker.v2.database.sql.DbTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.LabelManagerSourceFile", date = "2022-09-19T18:17:22.503589600Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public class LabelManager {
@@ -50,7 +50,7 @@ public class LabelManager {
 		throw new MissingImplementationException("LabelManager.isIdOK(long)");
 	}
 
-	public static boolean isIdOK(long id, DBTransaction transaction) {
+	public static boolean isIdOK(long id, DbTransaction transaction) {
 		throw new MissingImplementationException("LabelManager.isIdOK(long, DBTransaction)");
 	}
 
@@ -58,7 +58,7 @@ public class LabelManager {
 		return Configuration.getCurrentConfiguration().getLabelHelper().isNameOK(DbBeans.dbAccess, name);
 	}
 
-	public static boolean isNameOK(String name, DBTransaction transaction) {
+	public static boolean isNameOK(String name, DbTransaction transaction) {
 		throw new MissingImplementationException("LabelManager.isNameOK(String, DBTransaction)");
 	}
 
@@ -163,7 +163,7 @@ public class LabelManager {
 		}
 
 		@Override
-		public long duplicateLabel(DbBeanLabel label, DBTransaction transaction) {
+		public long duplicateLabel(DbBeanLabel label, DbTransaction transaction) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -184,7 +184,7 @@ public class LabelManager {
 		}
 
 		@Override
-		public DbBeanLabel getLabel(long id, DBTransaction transaction) {
+		public DbBeanLabel getLabel(long id, DbTransaction transaction) {
 			return new Label(id, transaction);
 		}
 

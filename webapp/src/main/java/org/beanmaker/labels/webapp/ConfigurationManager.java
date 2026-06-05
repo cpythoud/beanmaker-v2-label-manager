@@ -4,7 +4,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import org.beanmaker.labels.Configuration;
 
-import org.dbbeans.sql.DBFromDataSource;
+import org.beanmaker.v2.database.sql.DbFromDataSource;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -33,7 +33,7 @@ public class ConfigurationManager implements ServletContextListener {
 
         Configuration.setCurrentConfiguration(
                 Configuration.builder()
-                        .setDb(new DBFromDataSource(DATA_SOURCE))
+                        .setDb(new DbFromDataSource(DATA_SOURCE))
                         .usePlatformLabels(false)
                         .create()
         );

@@ -4,7 +4,7 @@ import org.beanmaker.v2.runtime.dbutil.LabelHelper;
 
 import org.beanmaker.v2.util.Strings;
 
-import org.dbbeans.sql.DB;
+import org.beanmaker.v2.database.sql.Db;
 
 public class Configuration {
 
@@ -13,7 +13,7 @@ public class Configuration {
     private final String languageTable;
     private final String labelTable;
     private final String labelDataTable;
-    private final DB db;
+    private final Db db;
     private final long defaultLanguageID;
     private final boolean usePlatformLabels;
     private final LabelHelper labelHelper;
@@ -22,7 +22,7 @@ public class Configuration {
             String languageTable,
             String labelTable,
             String labelDataTable,
-            DB db,
+            Db db,
             long defaultLanguageID,
             boolean usePlatformLabels)
     {
@@ -71,7 +71,7 @@ public class Configuration {
         return labelDataTable;
     }
 
-    public DB getDb() {
+    public Db getDb() {
         return db;
     }
 
@@ -96,7 +96,7 @@ public class Configuration {
         private String languageTable = "languages";
         private String labelTable = "labels";
         private String labelDataTable = "label_data";
-        private DB db;
+        private Db db;
         private long defaultLanguageID = 1;
         private boolean usePlatformLabels = true;
 
@@ -117,7 +117,7 @@ public class Configuration {
             return this;
         }
 
-        public ConfigurationBuilder setDb(DB db) {
+        public ConfigurationBuilder setDb(Db db) {
             this.db = db;
             return this;
         }

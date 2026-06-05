@@ -1,7 +1,7 @@
 package org.beanmaker.labels;
 
-import org.jcodegen.html.CData;
-import org.jcodegen.html.Tag;
+import org.beanmaker.v2.codegen.html.CData;
+import org.beanmaker.v2.codegen.html.Tag;
 
 import java.util.HashMap;
 import java.util.Map;

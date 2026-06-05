@@ -13,7 +13,7 @@ import javax.annotation.processing.Generated;
 import org.beanmaker.v2.runtime.DbBeanLabel;
 import org.beanmaker.v2.runtime.DbBeanLanguage;
 
-import org.dbbeans.sql.DBTransaction;
+import org.beanmaker.v2.database.sql.DbTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanSourceFile", date = "2022-09-19T18:23:32.402722300Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public final class Label extends LabelBase implements DbBeanLabel {
@@ -24,7 +24,7 @@ public final class Label extends LabelBase implements DbBeanLabel {
 		super(id);
 	}
 
-	public Label(long id, DBTransaction transaction) {
+	public Label(long id, DbTransaction transaction) {
 		super(id, transaction);
 	}
 

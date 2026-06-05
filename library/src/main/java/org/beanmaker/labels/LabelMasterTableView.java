@@ -8,13 +8,13 @@ import org.beanmaker.v2.runtime.MasterTableCellDefinition;
 
 import org.beanmaker.v2.util.Strings;
 
-import org.jcodegen.html.ATag;
-import org.jcodegen.html.CData;
-import org.jcodegen.html.SpanTag;
-import org.jcodegen.html.Tag;
-import org.jcodegen.html.TdTag;
-import org.jcodegen.html.ThTag;
-import org.jcodegen.html.TrTag;
+import org.beanmaker.v2.codegen.html.ATag;
+import org.beanmaker.v2.codegen.html.CData;
+import org.beanmaker.v2.codegen.html.SpanTag;
+import org.beanmaker.v2.codegen.html.Tag;
+import org.beanmaker.v2.codegen.html.TdTag;
+import org.beanmaker.v2.codegen.html.ThTag;
+import org.beanmaker.v2.codegen.html.TrTag;
 
 import javax.annotation.processing.Generated;
 

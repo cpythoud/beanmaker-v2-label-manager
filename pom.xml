@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.beanmaker</groupId>
     <artifactId>label-manager</artifactId>
-    <version>2.3</version>
+    <version>2.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     
     <name>Beanmaker Label Manager</name>
@@ -41,7 +41,7 @@
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <beanmaker.version>2.3</beanmaker.version>
+        <beanmaker.version>2.4-SNAPSHOT</beanmaker.version>
     </properties>
 
     <distributionManagement>
@@ -83,9 +83,9 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>org.dbbeans</groupId>
-                <artifactId>dbbeans-sql-lib</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <groupId>org.beanmaker</groupId>
+                <artifactId>beanmaker2-database-sql</artifactId>
+                <version>${beanmaker.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.beanmaker</groupId>

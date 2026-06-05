@@ -13,7 +13,7 @@ import org.beanmaker.v2.runtime.dbutil.Transactions;
 
 import org.beanmaker.v2.util.Strings;
 
-import org.dbbeans.sql.DBTransaction;
+import org.beanmaker.v2.database.sql.DbTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanEditorSourceFile", date = "2022-09-19T18:23:32.405720400Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public final class LabelEditor extends LabelEditorBase {
@@ -24,7 +24,7 @@ public final class LabelEditor extends LabelEditorBase {
 		super(id);
 	}
 
-	public LabelEditor(long id, DBTransaction transaction) {
+	public LabelEditor(long id, DbTransaction transaction) {
 		super(id, transaction);
 	}
 

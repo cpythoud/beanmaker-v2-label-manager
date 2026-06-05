@@ -10,7 +10,7 @@ import org.beanmaker.v2.runtime.DbBeanFileEditor;
 import org.beanmaker.v2.runtime.DbBeanFileInternalFilenameCalculator;
 import org.beanmaker.v2.runtime.MissingImplementationException;
 
-import org.dbbeans.sql.DBTransaction;
+import org.beanmaker.v2.database.sql.DbTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.LocalFileManagerSourceFile", date = "2022-09-19T18:17:22.505589Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public class LocalFileManager {
@@ -27,7 +27,7 @@ public class LocalFileManager {
 		throw new MissingImplementationException("LocalFileManager.isIdOK(long)");
 	}
 
-	public static boolean isIdOK(long id, DBTransaction transaction) {
+	public static boolean isIdOK(long id, DbTransaction transaction) {
 		throw new MissingImplementationException("LocalFileManager.isIdOK(long, DBTransaction)");
 	}
 

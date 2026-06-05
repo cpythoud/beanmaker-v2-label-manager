@@ -13,7 +13,7 @@ import org.beanmaker.v2.runtime.DbBeanLanguage;
 
 import org.beanmaker.v2.util.Strings;
 
-import org.dbbeans.sql.DBTransaction;
+import org.beanmaker.v2.database.sql.DbTransaction;
 
 @Generated(value = "org.beanmaker.v2.codegen.BeanSourceFile", date = "2022-09-19T18:17:22.507589800Z", comments = "EDITABLE,1.0-SNAPSHOT-20914")
 public final class Language extends LanguageBase implements DbBeanLanguage {
@@ -22,7 +22,7 @@ public final class Language extends LanguageBase implements DbBeanLanguage {
 		super(id);
 	}
 
-	public Language(long id, DBTransaction transaction) {
+	public Language(long id, DbTransaction transaction) {
 		super(id, transaction);
 	}
 
